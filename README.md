@@ -15,7 +15,6 @@ Browser7 provides geo-targeted web scraping with automatic proxy management, CAP
 - 🌍 **Geo-Targeting** - Render pages from specific countries and cities
 - 🤖 **CAPTCHA Solving** - Automatic detection and solving of reCAPTCHA and Cloudflare Turnstile
 - ⏱️ **Wait Actions** - Click elements, wait for selectors, text, or delays
-- 📸 **Screenshots** - Get JPEG screenshots of rendered pages
 - 🚀 **Performance** - Block images, track bandwidth, view timing metrics
 - 🔄 **Automatic Polling** - Built-in polling with progress callbacks
 - 💪 **Type Hints** - Full type annotations for IDE support
@@ -56,7 +55,6 @@ client = Browser7(api_key='b7_your_api_key_here')
 result = client.render('https://example.com', country_code='US')
 
 print(result.html)              # Rendered HTML
-print(result.screenshot)        # JPEG screenshot (bytes)
 print(result.selected_city)     # City used for rendering
 ```
 
@@ -87,6 +85,19 @@ result = client.render(
 )
 
 print(result.captcha)  # CAPTCHA detection info
+```
+
+### Check Account Balance
+
+```python
+balance = client.get_account_balance()
+
+print(f"Total: {balance.total_balance_formatted}")
+print(f"Renders remaining: {balance.total_balance_cents}")
+print(f"\nBreakdown:")
+print(f"  Paid: {balance.breakdown['paid']['formatted']} ({balance.breakdown['paid']['cents']} renders)")
+print(f"  Free: {balance.breakdown['free']['formatted']} ({balance.breakdown['free']['cents']} renders)")
+print(f"  Bonus: {balance.breakdown['bonus']['formatted']} ({balance.breakdown['bonus']['cents']} renders)")
 ```
 
 ## API Reference
@@ -125,6 +136,27 @@ Render a URL and poll for the result.
 - `fetch_urls` (list, optional): Additional URLs to fetch (max 10)
 
 **Returns:** `RenderResult` object
+
+### `client.get_account_balance()`
+
+Get the current account balance.
+
+**Returns:** `AccountBalance` object
+
+**Example:**
+```python
+balance = client.get_account_balance()
+print(f"Total: {balance.total_balance_formatted}")
+print(f"Renders remaining: {balance.total_balance_cents}")
+```
+
+**AccountBalance attributes:**
+- `total_balance_cents` (int): Total balance in cents (also equals renders remaining, since 1 cent = 1 render)
+- `total_balance_formatted` (str): Total balance formatted as USD currency (e.g., "$13.00")
+- `breakdown` (dict): Balance breakdown by type
+  - `breakdown['paid']` - Paid balance with `cents` and `formatted` keys
+  - `breakdown['free']` - Free balance with `cents` and `formatted` keys
+  - `breakdown['bonus']` - Bonus balance with `cents` and `formatted` keys
 
 ## Helper Functions
 
