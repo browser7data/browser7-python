@@ -1,9 +1,5 @@
 # Browser7 Python SDK
 
-> ⚠️ **ALPHA RELEASE** - The Browser7 API is not yet publicly available. This package is published to reserve the package name. The API is expected to launch in **Q2 2026**.
->
-> **Do not install this package yet** - it will not work until the Browser7 API is live. Follow [@browser7data](https://x.com/browser7data) or visit [browser7.com](https://browser7.com) for launch announcements.
-
 ---
 
 Official Python client for the [Browser7](https://browser7.com) web scraping and rendering API.
@@ -25,7 +21,7 @@ Browser7 provides geo-targeted web scraping with automatic proxy management, CAP
 pip install browser7
 ```
 
-**Requirements:** Python 3.8+
+**Requirements:** Python 3.10+
 
 ## Quick Start
 
@@ -224,11 +220,10 @@ MIT
 - 📧 Email: support@browser7.com
 - 📚 Documentation: https://docs.browser7.com
 - 🐛 Issues: https://github.com/browser7data/browser7-python/issues
-- 💬 Discord: https://discord.gg/browser7
 
 ## Links
 
 - [Browser7 Website](https://browser7.com)
-- [API Documentation](https://docs.browser7.com/api)
+- [API Documentation](https://docs.browser7.com/api/overview)
 - [Dashboard](https://dashboard.browser7.com)
 - [Pricing](https://browser7.com/pricing)

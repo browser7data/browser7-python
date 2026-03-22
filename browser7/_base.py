@@ -23,6 +23,7 @@ def _build_payload(
     screenshot_quality: Optional[int],
     screenshot_full_page: Optional[bool],
     debug: Optional[bool] = None,
+    force_new_proxy: Optional[bool] = None,
 ) -> Dict[str, Any]:
     """Build the camelCase API request payload from Python snake_case params."""
     payload: Dict[str, Any] = {'url': url}
@@ -48,6 +49,8 @@ def _build_payload(
         payload['screenshotFullPage'] = screenshot_full_page
     if debug is not None:
         payload['debug'] = debug
+    if force_new_proxy is not None:
+        payload['forceNewProxy'] = force_new_proxy
     return payload
 
 

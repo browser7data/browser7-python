@@ -69,6 +69,7 @@ class Browser7:
         screenshot_quality: Optional[int] = None,
         screenshot_full_page: Optional[bool] = None,
         debug: Optional[bool] = None,
+        force_new_proxy: Optional[bool] = None,
         on_progress: Optional[Callable] = None,
     ) -> RenderResult:
         """
@@ -112,6 +113,7 @@ class Browser7:
             screenshot_quality=screenshot_quality,
             screenshot_full_page=screenshot_full_page,
             debug=debug,
+            force_new_proxy=force_new_proxy,
         )
         render_id = response['renderId']
 
@@ -162,6 +164,7 @@ class Browser7:
         screenshot_quality: Optional[int] = None,
         screenshot_full_page: Optional[bool] = None,
         debug: Optional[bool] = None,
+        force_new_proxy: Optional[bool] = None,
     ) -> Dict[str, str]:
         """
         Create a render job without polling (low-level API).
@@ -185,7 +188,7 @@ class Browser7:
         payload = _build_payload(
             url, country_code, city, wait_for, captcha, block_images,
             fetch_urls, include_screenshot, screenshot_format, screenshot_quality, screenshot_full_page,
-            debug=debug,
+            debug=debug, force_new_proxy=force_new_proxy,
         )
         try:
             response = self._client.post(renders_url, json=payload)
